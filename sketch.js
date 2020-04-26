@@ -5,7 +5,7 @@ diskUsage = 0;
 ssid = 'NONE'
 let usageAnim = 0;
 let usageAnim_speed = 1;
-
+let cpuAnim = 0;
 let ip;
 let wifi;
 let backgroundImg;
@@ -100,6 +100,14 @@ function draw(){
 
   }
 
+  if(cpuAnim<cpuUsage){
+    cpuAnim+=0.1;
+  }else{
+    if(cpuAnim>cpuUsage)
+    cpuAnim-=0.1;
+  }
+  cpuAnim = round(cpuAnim,2);
+
 
 
   background(0);
@@ -113,8 +121,8 @@ function draw(){
   num++;
   //cpuUsage =100;
   fill(color(200,200,210));
-  for(j=0; j<((cpuUsage));j++){
-    siz = (cpuUsage-j)/3.14;
+  for(j=0; j<((cpuAnim));j++){
+    siz = (cpuAnim-j)/3.14;
     if(siz>20){
       siz=20;
     }
@@ -122,11 +130,11 @@ function draw(){
   }
 
 
-  i+=0.0006*cpuUsage;
+  i+=0.0006*cpuAnim;
 
  // fill(color(255,255,255));
   stroke(color(255,255,255));
-  text("CPU:\n"+cpuUsage+"%", baseX+100-15, baseY+100-15);
+  text("CPU:\n"+cpuAnim+"%", baseX+100-15, baseY+100-15);
   textSize(20);
 
   text(topStr, baseX+50, baseY+110+140)
